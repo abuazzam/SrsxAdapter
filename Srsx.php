@@ -185,9 +185,7 @@ class Registrar_Adapter_Srsx extends Registrar_AdapterAbstract implements \Box\I
         if (!isset($company) || strlen(trim($company)) == 0 ){
             $company = 'N/A';
         }
-        $phoneNum = $contact->getTel();
-        $phoneNum = preg_replace( "/[^0-9]/", "", $phoneNum);
-        $phoneNum = substr($phoneNum, 0, 12);
+        $phoneNum = $contact->getTel().$contact->getTel();
                 
         $params = array(
 			'api_id' 			=> $_REQUEST['id'],
@@ -203,7 +201,7 @@ class Registrar_Adapter_Srsx extends Registrar_AdapterAbstract implements \Box\I
 			"state"      		=> $contact->getState(),
 			"country"       	=> $contact->getCountry(),
 			"postcode"   		=> $contact->getZip(),
-			"phonenumber"       => $phoneNun,
+			"phonenumber"       => $phoneNum,
 			"email"   			=> $contact->getEmail(),
 					
 			"user_username"    	=> $contact->getEmail(),
@@ -215,7 +213,7 @@ class Registrar_Adapter_Srsx extends Registrar_AdapterAbstract implements \Box\I
 			"user_address2"    	=> $contact->getAddress2(),
 			"user_city"        	=> $contact->getCity(),
 			"user_province"    	=> $contact->getState(),
-			"user_phone"       	=> $phoneNun,
+			"user_phone"       	=> $phoneNum,
 			"user_country"     	=> $contact->getCountry(),
 			"user_postal_code" 	=> $contact->getZip(),
 			"randomhash"       	=> $this->randomhash(64)
