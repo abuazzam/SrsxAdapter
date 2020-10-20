@@ -335,7 +335,7 @@ class Registrar_Adapter_Srsx extends Registrar_AdapterAbstract implements \Box\I
  
 		if ($query && is_array($postfields)) {
 			# Get URL
-			$apiUrl = "https://srb{$this->config["resellerId"]}.srs-x.com";
+			$apiUrl = $this->_getApiUrl();
 			# Basic authentication
 			$postfields["username"] = $this->config["apiUsername"];
             $postfields["password"] = hash('sha256',$this->config["apiPassword"]);
@@ -356,6 +356,18 @@ class Registrar_Adapter_Srsx extends Registrar_AdapterAbstract implements \Box\I
  
 		}
 		return false;
+	}
+
+	public function isTestEnv()
+    {
+        return $this->_testMode;
+    }
+	
+	private function _getApiUrl()
+    {
+        if ($this->isTestEnv())
+            return "http://srb{$this->config["resellerId"]}.srs-x.net";
+        return "https://srb{$this->config["resellerId"]}.srs-x.com";
     }
  
     protected function randomhash($length=6) 
