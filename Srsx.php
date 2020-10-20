@@ -4,6 +4,7 @@
  *
  * Created by Agung Nugroho
  * For hosting please visit https://www.pahinhoster.com
+ * For reseller Domain ID visit https://dotid.pahin.web.id/reseller/register
  */
  
 /**
